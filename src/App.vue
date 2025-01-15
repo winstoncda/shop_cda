@@ -3,12 +3,19 @@ import TheHeader from "./components/Header.vue";
 import TheFooter from "./components/Footer.vue";
 import Cart from "./components/Cart/Cart.vue";
 import Shop from "./components/Shop/Shop.vue";
+import { reactive } from "vue";
+import type { ProductInterface } from "./interfaces/Product.interface";
+import data from "./data/products";
+
+// récupération des données depuis le fichier products dans data
+const products = reactive<ProductInterface[]>(data);
 </script>
 
 <template>
   <div class="app-container">
     <TheHeader class="header" />
-    <Shop class="shop" />
+    <!-- passage du tableau de produit -->
+    <Shop :productList="products" class="shop" />
     <Cart class="cart" />
     <TheFooter class="footer" />
   </div>
